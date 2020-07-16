@@ -152,7 +152,7 @@ def index():
 
 
 @app.route('/predict', methods=['POST'])
-def predict():
+def predict(debug=True):
 
     slope_of_peak_exercise_st_segment = request.form['slope_of_peak_exercise_st_segment']
     slope = cal(slope_of_peak_exercise_st_segment, 1)
@@ -182,12 +182,9 @@ def predict():
     oldpeak = cal(oldpeak_eq_st_depression, 13)
 
     input_data = [{**slope, **th, **ch, **exer, **num, **fast, **result, **sex, **age,**resting,**serum ,**max,**oldpeak}]
-    final = []
-
     data = pd.DataFrame(input_data)
     prediction = model.predict(data)[0]
     prediction = round(prediction)
-    print(prediction)
     if (prediction == 1.0):
         output = 'effected'
     else:
@@ -196,4 +193,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

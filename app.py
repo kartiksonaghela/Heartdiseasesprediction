@@ -152,7 +152,7 @@ def index():
 
 
 @app.route('/predict', methods=['POST'])
-def predict(debug=True):
+def predict():
 
     slope_of_peak_exercise_st_segment = request.form['slope_of_peak_exercise_st_segment']
     slope = cal(slope_of_peak_exercise_st_segment, 1)

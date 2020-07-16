@@ -142,7 +142,7 @@ def cal(x, y):
     return dict1
 
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
 
